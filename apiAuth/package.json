@@ -1,0 +1,26 @@
+{
+  "name": "apiauth",
+  "version": "1.0.0",
+  "description": "Api Auth",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Api",
+    "Auth",
+    "firebase"
+  ],
+  "author": "daniel ricardo galvan <danielricardogt@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.0.0"
+  }
+}

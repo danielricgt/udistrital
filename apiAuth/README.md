@@ -1,5 +1,10 @@
 # Api User
 
+## Configuration
+
+### rename 
+.env.example  | .env
+
 ### Endpoints
 
 | Method | Path            | Data              | Description              | Requires authorization | Cache | Services | External Services |

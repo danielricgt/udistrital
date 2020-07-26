@@ -2,10 +2,10 @@
 
 ### Endpoints
 
-| Method | Path       | Description              | Requires authorization | Cache | Services | External Services | Data |
-| :----- | :--------- | :----------------------- | :--------------------- | :---- | :------- | :---------------- | ---- |
-| `POST` | `api/user` | Create user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
-| `GET`  | `api/user` | Get user for Firebase    | `No`                   | `No`  | Firebase | Cloud Firestore   |
+| Method | Path       | Data | Description              | Requires authorization | Cache | Services | External Services |
+| :----- | :--------- | ---- | :----------------------- | :--------------------- | :---- | :------- | :---------------- |
+| `POST` | `api/user` |      | Create user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
+| `GET`  | `api/user` |      | Get user for Firebase    | `No`                   | `No`  | Firebase | Cloud Firestore   |
 
 **\*Nomenclatura:** {Service} - {Method}
 

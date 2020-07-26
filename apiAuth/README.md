@@ -2,8 +2,8 @@
 
 ### Endpoints
 
-| Method | Path       | Description              | Requires authorization | Cache | Services | External Services |
-| :----- | :--------- | :----------------------- | :--------------------- | :---- | :------- | :---------------- |
+| Method | Path       | Description              | Requires authorization | Cache | Services | External Services | Data |
+| :----- | :--------- | :----------------------- | :--------------------- | :---- | :------- | :---------------- | ---- |
 | `POST` | `api/user` | Create user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
 | `GET`  | `api/user` | Get user for Firebase    | `No`                   | `No`  | Firebase | Cloud Firestore   |
 

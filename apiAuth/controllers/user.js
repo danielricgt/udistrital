@@ -9,18 +9,16 @@ admin.initializeApp({
 const db = admin.firestore();
 
 async function getUser(user) {
-  var scoresRef = db.ref("users");
-  scoresRef.orderByValue().on("value", function(snapshot) {
-    snapshot.forEach(function(data) {
-      console.log("The " + data.key + " dinosaur's score is " + data.val());
-    });
-  });
+  let users = db.collection('users').doc(`${user.dni}`);
+  let userData = await users.get()
+  return userData.data();
 }
 
 async function createUser(user) {
-  let docRef = db.collection("users").doc();
+  let docRef = db.collection("users").doc(user.dni);
   let setAda = await docRef.set({
-    user,
+    name: user.name,
+    role: user.role
   });
   return setAda;
 }

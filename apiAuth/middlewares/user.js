@@ -13,21 +13,26 @@ async function validateData(req, res, next){
 
 async function getUser(req, res){
     try {
-        let user = await userController.getUser(req.objects.user);
-        res.json(user);
+        let userData = await userController.getUser(req.objects.user);
+        res.json(userData);
     } catch (error) {
         res.status(400).json({message : "get User"})
     }
 }
 
 async function createUser(req, res){
+    let userState = await userController.getUser(req.objects.user)
+    if(userState === undefined){
     try {
         await userController.createUser(req.objects.user)
         res.json({ message: `User Create` })
     } catch (error) {
         res.status(400).json({message : "Error cretate User"})
     }
-  
+}
+else{
+    res.status(400).json({message : "User Duplicate"})
+}  
 }
 
 module.exports ={

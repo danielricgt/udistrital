@@ -11,6 +11,11 @@ exports.createUser=[
     user.createUser
 ];
 
+exports.updateUser=[
+    user.validateData,
+    user.updateUser
+];
+
 /*
 exports.listUsers= [
     

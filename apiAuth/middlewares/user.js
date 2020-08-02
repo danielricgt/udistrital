@@ -8,6 +8,10 @@ async function validateData(req, res, next){
     else if(req.method === 'GET'){
         req.objects.user = req.query
     }
+    else if(req.method === 'PUT'){
+        req.objects.id == req.query.id
+        req.objects.user = req.body;
+    }
     next();
 }
 
@@ -35,8 +39,18 @@ else{
 }  
 }
 
+async function updateUser(req, res){
+    try {
+        let  update =  await userController.updateUser(req.query.id,req.objects.user)
+        re.json(update)
+    } catch (error) {
+        res.status(400).json({message : "Error update User"});
+    }
+}
+
 module.exports ={
     validateData,
     createUser,
-    getUser
+    getUser,
+    updateUser
 }

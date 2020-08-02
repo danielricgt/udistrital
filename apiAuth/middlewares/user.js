@@ -42,7 +42,7 @@ else{
 async function updateUser(req, res){
     try {
         let  update =  await userController.updateUser(req.query.id,req.objects.user)
-        re.json(update)
+        res.json(update)
     } catch (error) {
         res.status(400).json({message : "Error update User"});
     }

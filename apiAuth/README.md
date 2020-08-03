@@ -2,15 +2,17 @@
 
 ## Configuration
 
-### rename 
-.env.example  | .env
+### rename
+
+.env.example | .env
 
 ### Endpoints
 
-| Method | Path            | Data              | Description              | Requires authorization | Cache | Services | External Services |
-| :----- | :-------------- | ----------------- | :----------------------- | :--------------------- | :---- | :------- | :---------------- |
-| `POST` | `api/user`      | `{dni,name,role}` | Create user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
-| `GET`  | `api/user{dni}` | N/A               | Get user for Firebase    | `No`                   | `No`  | Firebase | Cloud Firestore   |
+| Method | Path           | Data                                | Description              | Requires authorization | Cache | Services | External Services |
+| :----- | :------------- | ----------------------------------- | :----------------------- | :--------------------- | :---- | :------- | :---------------- |
+| `POST` | `api/user`     | `{id,name,lastname,password,email}` | Create user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
+| `GET`  | `api/user{id}` | N/A                                 | Get user for Firebase    | `No`                   | `No`  | Firebase | Cloud Firestore   |
+| `PUT`  | `api/user{id}` | `{name,lastname,password,email}`    | Update user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
 
 **\*Nomenclatura:** {Service} - {Method}
 

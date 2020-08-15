@@ -18,8 +18,7 @@ async function getUser(req, res) {
   try {
     let userData = await userController.getUser(req.objects.user);
     if (userData.response !== undefined) {
-
-        let user =  await userController.getUserRole(userData.response.uid);
+      let user = await userController.getUserRole(userData.response.uid);
       let userInfo = {
         id: user.id,
         uid: userData.response.uid,
@@ -28,7 +27,7 @@ async function getUser(req, res) {
         phoneNumber: userData.response.phoneNumber,
         email: userData.response.email,
         emailVerified: userData.response.emailVerified,
-        status: userData.response.disabled
+        status: userData.response.disabled,
       };
       res.json({ userInfo });
     } else {
@@ -41,8 +40,12 @@ async function getUser(req, res) {
 
 async function createUser(req, res) {
   try {
-    let useResult = await userController.createUser(req.objects.user);
-    res.json({ message: useResult });
+    let userResult = await userController.createUser(req.objects.user);
+    if (userResult.data === undefined) {
+      res.status(201).json({ error: userResult.error });
+    } else {
+      res.json({ message: userResult });
+    }
   } catch (error) {
     res.status(400).json({ message: "Error cretate User" });
   }

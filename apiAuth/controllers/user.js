@@ -41,6 +41,7 @@ async function createUserDatabase(user) {
 }
 
 async function createUser(user) {
+  let data = {}
   try {
     let result = await admin.auth().createUser({
       email: user.email,
@@ -53,9 +54,10 @@ async function createUser(user) {
     });
     result.id = user.id
     await createUserDatabase(result);
-    return result;
+    return data
   } catch (error) {
-    return error;
+    data.error = error
+    return data;
   }
 }
 

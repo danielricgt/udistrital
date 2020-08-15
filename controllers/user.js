@@ -54,6 +54,7 @@ async function createUser(user) {
     });
     result.id = user.id
     await createUserDatabase(result);
+    data.data =  result;
     return data
   } catch (error) {
     data.error = error

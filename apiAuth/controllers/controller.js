@@ -1,5 +1,4 @@
 const user =  require('../middlewares/user')
-//exports.getAuth =[]
 
 exports.getUser = [
     user.validateData,
@@ -16,7 +15,7 @@ exports.updateUser=[
     user.updateUser
 ];
 
-/*
-exports.listUsers= [
-    
-]*/
+exports.login = [
+    user.validateData,
+    user.login
+]

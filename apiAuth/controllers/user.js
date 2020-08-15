@@ -1,6 +1,5 @@
 const admin = require("firebase-admin");
 const serviceAccount = require("../config/config.json");
-const { use } = require("../routes/user");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -9,38 +8,63 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
+async function getUserRole(uid) {
+  try {
+    let users = db.collection("users").doc(uid);
+    let userData = await users.get();
+    return userData.data();
+  } catch (error) {
+    console(error)
+  }
+}
+
 async function getUser(user) {
-  let users = db.collection('users').doc(`${user.id}`);
-  let userData = await users.get()
-  return userData.data();
+  try {
+    let userData = await admin.auth().getUserByEmail(user.email);
+    return userData.response = userData;
+  } catch (error) {
+    return userData.error = error;
+  }
+}
+
+async function createUserDatabase(user) {
+  let docRef = db.collection("users").doc(user.uid);
+  try {
+    let setAda = await docRef.set({
+      id: user.id,
+      role: "user",
+    });
+    return setAda;
+  } catch (error) {
+    return error;
+  }
 }
 
 async function createUser(user) {
-  let docRef = db.collection("users").doc(user.id);
-  let setAda = await docRef.set({
-    name: user.name,
-    lastname: user.lastname,
-    password: user.password,
-    email: user.email,
-    role: 'newUser'
-  });
-  return setAda;
+  try {
+    let result = await admin.auth().createUser({
+      email: user.email,
+      emailVerified: false,
+      phoneNumber: user.phoneNumber,
+      password: user.password,
+      displayName: `${user.name} ${user.lastname}`,
+      photoURL: user.photoURL,
+      disabled: false,
+    });
+    result.id = user.id
+    await createUserDatabase(result);
+    return result;
+  } catch (error) {
+    return error;
+  }
 }
 
-async function updateUser(id,user){
-  let docRef = db.collection('users').doc(id);
-  return await docRef.update(user)
+async function updateUser(id, user) {
+  let docRef = db.collection("users").doc(id);
+  return await docRef.update(user);
 }
 
-async function auth(req, res) {
-  const user = {
-    id: "3321321",
-    name: "John",
-    user: "correo@example.com",
-    password: "jewrlkjtkljerlkrtejlkertjlk",
-  };
-  res.json(user);
-}
+async function authUser(req, res) {}
 
 async function deAuthenticate(req, res) {
   const user = {
@@ -56,5 +80,7 @@ module.exports = {
   getUser,
   createUser,
   deAuthenticate,
-  updateUser
+  updateUser,
+  authUser,
+  getUserRole,
 };

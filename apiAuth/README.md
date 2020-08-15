@@ -11,8 +11,8 @@
 | Method | Path           | Data                                                          | Description              | Requires authorization | Cache | Services | External Services |
 | :----- | :------------- | ------------------------------------------------------------- | :----------------------- | :--------------------- | :---- | :------- | :---------------- |
 | `POST` | `api/user`     | `id*,email *,password*,name*,lastname*,photoURL,phoneNumber` | Create user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
-| `GET`  | `api/user{id}` | N/A                                                           | Get user for Firebase    | `No`                   | `No`  | Firebase | Cloud Firestore   |
-| `PUT`  | `api/user{id}` | `{name,lastname,password,email}`                              | Update user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
+| `GET`  | `api/user{email}` | N/A                                                           | Get user for Firebase    | `No`                   | `No`  | Firebase | Cloud Firestore   |
+| `PUT`  | `api/user{id}` | `{name,lastname,password,email} aun no esta`                              | Update user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
 
 ## errors
 

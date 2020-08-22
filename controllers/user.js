@@ -7,10 +7,11 @@ admin.initializeApp({
 });
 
 const db = admin.firestore();
+let table =  db.collection("users");
 
 async function getUserRole(uid) {
   try {
-    let users = db.collection("users").doc(uid);
+    let users = db.table.doc(uid);
     let userData = await users.get();
     return userData.data();
   } catch (error) {
@@ -28,7 +29,7 @@ async function getUser(user) {
 }
 
 async function createUserDatabase(user) {
-  let docRef = db.collection("users").doc(user.uid);
+  let docRef = table.doc(user.uid);
   try {
     let setAda = await docRef.set({
       id: user.id,
@@ -63,27 +64,13 @@ async function createUser(user) {
 }
 
 async function updateUser(id, user) {
-  let docRef = db.collection("users").doc(id);
+  let docRef = table.doc(id);
   return await docRef.update(user);
-}
-
-async function authUser(req, res) {}
-
-async function deAuthenticate(req, res) {
-  const user = {
-    id: "3321321",
-    name: "John",
-    user: "correo@example.com",
-    password: "jewrlkjtkljerlkrtejlkertjlk",
-  };
-  res.json(user);
 }
 
 module.exports = {
   getUser,
   createUser,
-  deAuthenticate,
   updateUser,
-  authUser,
   getUserRole,
 };

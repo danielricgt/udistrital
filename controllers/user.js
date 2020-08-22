@@ -7,27 +7,14 @@ admin.initializeApp({
 });
 
 const db = admin.firestore();
-let table =  db.collection("users");
-
-const object = {
-  
-}
+let table = db.collection("users")
 
 async function getUserRole(uid) {
   try {
-    let users = db.table.doc(uid);
+    let users = await table.doc(uid);
     let userData = await users.get();
     return userData.data();
   } catch (error) {
-    async function deAuthenticate(req, res) {
-      const user = {
-        id: "3321321",
-        name: "John",
-        user: "correo@example.com",
-        password: "jewrlkjtkljerlkrtejlkertjlk",
-      };
-      res.json(user);
-    }
     console(error)
   }
 }
@@ -42,7 +29,7 @@ async function getUser(user) {
 }
 
 async function createUserDatabase(user) {
-  let docRef = table.doc(user.uid);
+  let docRef = await table.doc(user.uid);
   try {
     let setAda = await docRef.set({
       id: user.id,
@@ -77,7 +64,7 @@ async function createUser(user) {
 }
 
 async function updateUser(id, user) {
-  let docRef = table.doc(id);
+  let docRef = await table.doc(id);
   return await docRef.update(user);
 }
 

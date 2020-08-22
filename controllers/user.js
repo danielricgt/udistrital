@@ -15,6 +15,15 @@ async function getUserRole(uid) {
     let userData = await users.get();
     return userData.data();
   } catch (error) {
+    async function deAuthenticate(req, res) {
+      const user = {
+        id: "3321321",
+        name: "John",
+        user: "correo@example.com",
+        password: "jewrlkjtkljerlkrtejlkertjlk",
+      };
+      res.json(user);
+    }
     console(error)
   }
 }

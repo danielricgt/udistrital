@@ -7,7 +7,11 @@ admin.initializeApp({
 });
 
 const db = admin.firestore();
-let table = db.collection("users");
+let table =  db.collection("users");
+
+const object = {
+  
+}
 
 async function getUserRole(uid) {
   try {
@@ -15,17 +19,25 @@ async function getUserRole(uid) {
     let userData = await users.get();
     return userData.data();
   } catch (error) {
-    res.json(user);
+    async function deAuthenticate(req, res) {
+      const user = {
+        id: "3321321",
+        name: "John",
+        user: "correo@example.com",
+        password: "jewrlkjtkljerlkrtejlkertjlk",
+      };
+      res.json(user);
+    }
+    console(error)
   }
-  console(error);
 }
 
 async function getUser(user) {
   try {
     let userData = await admin.auth().getUserByEmail(user.email);
-    return (userData.response = userData);
+    return userData.response = userData;
   } catch (error) {
-    return (userData.error = error);
+    return userData.error = error;
   }
 }
 
@@ -43,7 +55,7 @@ async function createUserDatabase(user) {
 }
 
 async function createUser(user) {
-  let data = {};
+  let data = {}
   try {
     let result = await admin.auth().createUser({
       email: user.email,
@@ -54,12 +66,12 @@ async function createUser(user) {
       photoURL: user.photoURL,
       disabled: false,
     });
-    result.id = user.id;
+    result.id = user.id
     await createUserDatabase(result);
-    data.data = result;
-    return data;
+    data.data =  result;
+    return data
   } catch (error) {
-    data.error = error;
+    data.error = error
     return data;
   }
 }

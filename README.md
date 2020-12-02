@@ -8,15 +8,19 @@
 
 ### Endpoints
 
-| Method | Path           | Data                                                          | Description              | Requires authorization | Cache | Services | External Services |
-| :----- | :------------- | ------------------------------------------------------------- | :----------------------- | :--------------------- | :---- | :------- | :---------------- |
-| `POST` | `api/user`     | `id*,email *,password*,name*,lastname*,photoURL,phoneNumber` | Create user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
-| `GET`  | `api/user{email}` | N/A                                                           | Get user for Firebase    | `No`                   | `No`  | Firebase | Cloud Firestore   |
-| `PUT`  | `api/user{id}` | `{name,lastname,password,email} aun no esta`                              | Update user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
+| Method | Path              | Data                                                         | Description              | Requires authorization | Cache | Services | External Services |
+| :----- | :---------------- | ------------------------------------------------------------ | :----------------------- | :--------------------- | :---- | :------- | :---------------- |
+| `POST` | `api/user`        | `id*,email *,password*,name*,lastname*,photoURL,phoneNumber` | Create user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
+| `GET`  | `api/user{email}` | N/A                                                          | Get user for Firebase    | `No`                   | `No`  | Firebase | Cloud Firestore   |
+| `PUT`  | `api/user{id}`    | `{name,lastname,password,email} aun no esta`                 | Update user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
+| `POST`  | `api/dependence`    | `{name,lastname,password,email} aun no esta`                 | Update user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
+| `GET`  | `api/dependence`    | `{id,name} aun no esta`                 | Update user for Firebase | `No`                   | `No`  | Firebase | Cloud Firestore   |
+
 
 ## errors
 
 ### User
+
 201 data exist
 
 ```

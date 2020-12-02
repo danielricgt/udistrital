@@ -1,4 +1,5 @@
-const user =  require('../middlewares/user')
+const user =  require('../middlewares/user');
+const dependence = require('../middlewares/dependence');
 
 exports.getUser = [
     user.validateData,
@@ -18,4 +19,13 @@ exports.updateUser=[
 exports.login = [
     user.validateData,
     user.login
+]
+
+exports.createDependence =[
+    dependence.validateData,
+    dependence.createDependence
+]
+
+exports.getDependencies = [
+    dependence.getDependencies
 ]

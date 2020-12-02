@@ -1,5 +1,4 @@
-const userController = require("../controllers/user");
-const user = require("../controllers/user");
+const userController = require("../controllers/firebase");
 
 async function validateData(req, res, next) {
   req.objects = {};

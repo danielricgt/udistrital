@@ -9,11 +9,13 @@ app.use(cors())
 var port = process.env.PORT || 4000;
 
 var userRouter = require('./routes/user');
+var dependenceRouter = require('./routes/dependence');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/api', userRouter);
+app.use('/api',dependenceRouter);
 app.get('/',(req,res) => {
     res.json({ message: "Api Auth" })
 });

@@ -7,10 +7,10 @@ admin.initializeApp({
 });
 
 const db = admin.firestore();
-let table = db.collection("users")
 
 async function getUserRole(uid) {
   try {
+    let table = db.collection("users")
     let users = await table.doc(uid);
     let userData = await users.get();
     return userData.data();
@@ -29,6 +29,7 @@ async function getUser(user) {
 }
 
 async function createUserDatabase(user) {
+  let table = db.collection("users")
   let docRef = await table.doc(user.uid);
   try {
     let setAda = await docRef.set({
@@ -64,8 +65,55 @@ async function createUser(user) {
 }
 
 async function updateUser(id, user) {
+  let table = db.collection("users")
   let docRef = await table.doc(id);
   return await docRef.update(user);
+}
+
+async function createDependence(dependence){
+  let table = db.collection("dependencies")
+  let docRef = await table.doc();
+  try {
+    let setAda = await docRef.set({
+      dependence_name: dependence.name,
+    });
+    return setAda;
+  } catch (error) {
+    return error;
+  }
+}
+
+async function getDependencies(){
+  let table = db.collection('dependencies');
+  let dependencies = [];
+  let query = await (await table.get()).docs;
+  for (let index = 0; index < query.length; index++) {
+    const element = query[index];
+    dependencies.push(
+      {
+        id: element._ref._path.segments[1],
+        dependence_name: element._fieldsProto.dependence_name.stringValue
+      }
+    )
+  }
+  return dependencies;
+    // .then(snapshot => {
+    //   snapshot.forEach(doc => {
+    //     console.log(doc.id, '=>', doc.data());
+    //     dependencies.push({
+    //       id: doc.id,
+    //       dependencies_name: doc.data()
+    //     })
+    //   });
+    // })
+    // .catch(err => {
+    //   console.log('Error getting documents', err);
+    // });
+    // if(dependencies.length === 0){}
+    // else{
+    //   console.log(dependencies);
+    //   return dependencies;
+    // }
 }
 
 module.exports = {
@@ -73,4 +121,6 @@ module.exports = {
   createUser,
   updateUser,
   getUserRole,
+  createDependence,
+  getDependencies
 };

@@ -14,7 +14,6 @@ async function validateData(req, res, next) {
   }
 
 async function createDependence(req, res) {
-    let userInfo = await dependenceController.getUser(req.objects.dependence);
     let result = await dependenceController.createDependence(req.objects.dependence)
     res.json(result);
 }

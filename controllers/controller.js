@@ -1,4 +1,4 @@
-const user =  require('../middlewares/user');
+const user = require('../middlewares/user');
 const dependence = require('../middlewares/dependence');
 const inventory =  require('../middlewares/inventory')
 

@@ -55,7 +55,9 @@ async function createUser(user) {
       photoURL: user.photoURL,
       disabled: false,
     });
-    result.id = user.id
+    result.fk_dependence = user.fk_dependence;
+    result.id = user.id;
+    
     await createUserDatabase(result);
     data.data =  result;
     return data

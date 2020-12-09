@@ -26,6 +26,7 @@ async function getUser(req, res) {
         phoneNumber: userData.response.phoneNumber,
         email: userData.response.email,
         emailVerified: userData.response.emailVerified,
+        fk_dependence: user.fk_dependence,
         status: userData.response.disabled,
       };
       res.json({ userInfo });

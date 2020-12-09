@@ -1,5 +1,6 @@
 const user =  require('../middlewares/user');
 const dependence = require('../middlewares/dependence');
+const inventory =  require('../middlewares/inventory')
 
 exports.getUser = [
     user.validateData,
@@ -28,4 +29,9 @@ exports.createDependence =[
 
 exports.getDependencies = [
     dependence.getDependencies
+]
+
+exports.createInventory = [
+    inventory.validateData,
+    inventory.createinventory
 ]

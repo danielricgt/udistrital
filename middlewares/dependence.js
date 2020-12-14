@@ -24,7 +24,6 @@ async function getDependencies(req, res) {
 }
 
 async function getDependence(req, res){
-  console.log("data result",req.objects.dependence.id);
   let result = await dependenceController.getDependence(req.objects.dependence.id);
   res.json(result);
 }

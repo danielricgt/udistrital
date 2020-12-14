@@ -100,15 +100,15 @@ async function getDependencies() {
   return dependencies;
 }
 
-async function getDependencies(id) {
-  let table = db.collection("dependencies").doc(id);
-  let getDoc = await table.get();
-  let result = {
-    id: getDoc._ref._path.segments[1],
-    name: getDoc._fieldsProto.dependence_name.stringValue,
-  };
-  return result;
-}
+// async function getDependencies(id) {
+//   let table = db.collection("dependencies").doc(id);
+//   let getDoc = await table.get();
+//   let result = {
+//     id: getDoc._ref._path.segments[1],
+//     name: getDoc._fieldsProto.dependence_name.stringValue,
+//   };
+//   return result;
+// }
 
 async function getDependence(id) {
   const table = db.collection("dependencies");

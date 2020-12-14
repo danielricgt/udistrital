@@ -19,8 +19,13 @@ async function createinventory(req,res){
     res.json(result);
 }
 
+async function getInventory(req,res){
+  let inventory =  await inventoryController.getInventory()
+}
+
 
 module.exports = {
   validateData,
   createinventory,
+  getInventory
 };

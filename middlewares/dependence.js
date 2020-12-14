@@ -5,7 +5,7 @@ async function validateData(req, res, next) {
     if (req.method === "POST") {
       req.objects.dependence = req.body;
     } else if (req.method === "GET") {
-      req.objects.user = req.query;
+      req.objects.dependence = req.query;
     } else if (req.method === "PUT") {
       req.objects.id == req.query.id;
       req.objects.user = req.body;
@@ -23,9 +23,16 @@ async function getDependencies(req, res) {
     res.json(result);
 }
 
+async function getDependence(req, res){
+  console.log("data result",req.objects.dependence.id);
+  let result = await dependenceController.getDependence(req.objects.dependence.id);
+  res.json(result);
+}
+
 
 module.exports = {
     validateData,
     createDependence,
-    getDependencies
+    getDependencies,
+    getDependence
 };

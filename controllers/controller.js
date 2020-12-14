@@ -31,7 +31,17 @@ exports.getDependencies = [
     dependence.getDependencies
 ]
 
+exports.getDependence = [
+    dependence.validateData,
+    dependence.getDependence
+]
+
 exports.createInventory = [
     inventory.validateData,
     inventory.createinventory
+]
+
+exports.getInventory =[
+    inventory.validateData,
+    inventory.getInventory,
 ]

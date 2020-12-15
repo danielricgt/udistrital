@@ -149,11 +149,13 @@ async function getGoods(dependence) {
         reason: element._fieldsProto.reason.stringValue,
         place: element._fieldsProto.place.stringValue,
         description: element._fieldsProto.description.stringValue,
+        step: element._fieldsProto.step.stringValue,
       });
     }
   } else {
       goods.push({
         id: element._ref._path.segments[1],
+        name: element._fieldsProto.name.stringValue,
         physical_space: element._fieldsProto.physical_space.stringValue,
         idPlate: element._fieldsProto.idPlate.stringValue,
         fk_dependence: element._fieldsProto.fk_dependence.stringValue,
@@ -162,6 +164,7 @@ async function getGoods(dependence) {
         reason: element._fieldsProto.reason.stringValue,
         place: element._fieldsProto.place.stringValue,
         description: element._fieldsProto.description.stringValue,
+        step: element._fieldsProto.step.stringValue,
       });
     }
   }

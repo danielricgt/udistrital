@@ -15,3 +15,4 @@ exports.getDependence = [dependence.validateData, dependence.getDependence];
 exports.createGood = [good.validateData, good.createGood];
 exports.getGoods = [good.validateData, good.getGoods];
 exports.getGood = [good.validateData, good.getGood];
+//exports.updateGood= [good.validateData]

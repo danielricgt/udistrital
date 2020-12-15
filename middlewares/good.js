@@ -27,12 +27,15 @@ async function getGoods(req,res){
 async function getGood(req,res){
 }
 
+async function updateGood(req,req){
+
+}
 
 
 module.exports = {
   validateData,
   createGood,
   getGoods,
-  getGood
-
+  getGood,
+  updateGood
 };

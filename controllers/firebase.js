@@ -139,6 +139,7 @@ async function getGoods(dependence) {
     if(dependence.id === element._fieldsProto.fk_dependence.stringValue){
       goods.push({
         id: element._ref._path.segments[1],
+        name: element._fieldsProto.name.stringValue,
         physical_space: element._fieldsProto.physical_space.stringValue,
         idPlate: element._fieldsProto.idPlate.stringValue,
         fk_dependence: element._fieldsProto.fk_dependence.stringValue,

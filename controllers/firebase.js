@@ -114,7 +114,7 @@ async function getDependence(id) {
 
 async function createGood(good) {
   let dependence = await getDependence(good.fk_dependence);
-  good.state = "create";
+  good.step = "create";
   if (dependence) {
     let table = db.collection("goods");
     let docRef = await table.doc();
@@ -137,6 +137,7 @@ async function getGoods(dependence) {
       const element = query[index];
   if (dependence.id) {
     if(dependence.id === element._fieldsProto.fk_dependence.stringValue){
+      console.log(element)
       goods.push({
         id: element._ref._path.segments[1],
         name: element._fieldsProto.name.stringValue,

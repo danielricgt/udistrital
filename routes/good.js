@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 var controllers = require("../controllers/controller");
 
-//router.get("/inventory", controllers);
-router.post("/inventory", controllers.createInventory);
-router.put("/inventory", controllers.updateUser);
+router.get("/good", controllers.getGood);
+router.post("/good", controllers.createGood);
+router.get("/goods",controllers.getGoods);
 
 module.exports = router;

@@ -10,14 +10,14 @@ var port = process.env.PORT || 4000;
 
 var userRouter = require('./routes/user');
 var dependenceRouter = require('./routes/dependence');
-var inventoryRouter =  require('./routes/inventories');
+var goodRouter =  require('./routes/good');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/api', userRouter);
 app.use('/api',dependenceRouter);
-app.use('/api',inventoryRouter);
+app.use('/api', goodRouter);
 
 app.get('/',(req,res) => {
     res.json({ message: "Api Auth" })

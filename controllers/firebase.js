@@ -100,48 +100,30 @@ async function getDependencies() {
   return dependencies;
 }
 
-// async function getDependencies(id) {
-//   let table = db.collection("dependencies").doc(id);
-//   let getDoc = await table.get();
-//   let result = {
-//     id: getDoc._ref._path.segments[1],
-//     name: getDoc._fieldsProto.dependence_name.stringValue,
-//   };
-//   return result;
-// }
-
 async function getDependence(id) {
   const table = db.collection("dependencies");
   const snapshot = await table.get();
   let data;
   snapshot.forEach((doc) => {
-    if(id === doc.id){
-      data =  doc.data();
+    if (id === doc.id) {
+      data = doc.data();
     }
   });
   return data;
 }
 
-async function getInventory(id) {
-  let table = db.collection("inventories").doc(id);
-  let getDoc = await table.get();
-  let result = {
-    id: getDoc._ref._path.segments[1],
-    name: getDoc._fieldsProto.dependence_name.stringValue,
-  };
-  return result;
-}
-
-async function createInventory(dependence) {
-  let table = db.collection("inventories");
-  let docRef = await table.doc();
-  try {
-    let setAda = await docRef.set({
-      fk_dependence: dependence.id,
-    });
-    return setAda;
-  } catch (error) {
-    return error;
+async function createGood(good) {
+  let dependence = await getDependence(good.fk_dependence);
+  good.state = "create"; 
+  if (dependence) {
+    let table = db.collection("goods");
+    let docRef = await table.doc();
+    try {
+      let setAda = await docRef.set(good);
+      return setAda;
+    } catch (error) {
+      return error;
+    }
   }
 }
 
@@ -153,6 +135,5 @@ module.exports = {
   createDependence,
   getDependencies,
   getDependence,
-  createInventory,
-  getInventory,
+  createGood,
 };

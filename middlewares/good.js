@@ -1,3 +1,4 @@
+const { json } = require("body-parser");
 const goodController = require("../controllers/firebase");
 
 async function validateData(req, res, next) {
@@ -19,7 +20,8 @@ async function createGood(req,res){
 }
 
 async function getGoods(req,res){
-
+  let result  = await goodController.getGoods(req.objects.good);
+  res.json(result);
 }
 
 async function getGood(req,res){

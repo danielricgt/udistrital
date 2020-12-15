@@ -114,7 +114,7 @@ async function getDependence(id) {
 
 async function createGood(good) {
   let dependence = await getDependence(good.fk_dependence);
-  good.state = "create"; 
+  good.state = "create";
   if (dependence) {
     let table = db.collection("goods");
     let docRef = await table.doc();
@@ -127,6 +127,45 @@ async function createGood(good) {
   }
 }
 
+async function getGood() {}
+
+async function getGoods(dependence) {
+  let table = db.collection("goods");
+    let goods = [];
+    let query = await (await table.get()).docs;
+    for (let index = 0; index < query.length; index++) {
+      const element = query[index];
+  if (dependence.id) {
+    if(dependence.id === element._fieldsProto.fk_dependence.stringValue){
+      goods.push({
+        id: element._ref._path.segments[1],
+        physical_space: element._fieldsProto.physical_space.stringValue,
+        idPlate: element._fieldsProto.idPlate.stringValue,
+        fk_dependence: element._fieldsProto.fk_dependence.stringValue,
+        state: element._fieldsProto.state.stringValue,
+        brand_and_serie: element._fieldsProto.brand_and_serie.stringValue,
+        reason: element._fieldsProto.reason.stringValue,
+        place: element._fieldsProto.place.stringValue,
+        description: element._fieldsProto.description.stringValue,
+      });
+    }
+  } else {
+      goods.push({
+        id: element._ref._path.segments[1],
+        physical_space: element._fieldsProto.physical_space.stringValue,
+        idPlate: element._fieldsProto.idPlate.stringValue,
+        fk_dependence: element._fieldsProto.fk_dependence.stringValue,
+        state: element._fieldsProto.state.stringValue,
+        brand_and_serie: element._fieldsProto.brand_and_serie.stringValue,
+        reason: element._fieldsProto.reason.stringValue,
+        place: element._fieldsProto.place.stringValue,
+        description: element._fieldsProto.description.stringValue,
+      });
+    }
+  }
+  return goods;
+}
+
 module.exports = {
   getUser,
   createUser,
@@ -136,4 +175,5 @@ module.exports = {
   getDependencies,
   getDependence,
   createGood,
+  getGoods,
 };

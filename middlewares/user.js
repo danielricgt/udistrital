@@ -39,16 +39,17 @@ async function getUser(req, res) {
 }
 
 async function createUser(req, res) {
-  try {
-    let userResult = await userController.createUser(req.objects.user);
-    if (userResult.data === undefined) {
-      res.status(201).json({ error: userResult.error });
-    } else {
-      res.json({ message: userResult });
-    }
-  } catch (error) {
-    res.status(400).json({ message: "Error cretate User" });
-  }
+  console.log(req.objects);
+  // try {
+  //   let userResult = await userController.createUser(req.objects.user);
+  //   if (userResult.data === undefined) {
+  //     res.status(201).json({ error: userResult.error });
+  //   } else {
+  //     res.json({ message: userResult });
+  //   }
+  // } catch (error) {
+  //   res.status(400).json({ message: "Error cretate User" });
+  // }
 }
 
 async function updateUser(req, res) {

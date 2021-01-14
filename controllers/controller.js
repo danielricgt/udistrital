@@ -3,7 +3,10 @@ const dependence = require("../middlewares/dependence");
 const good = require("../middlewares/good");
 
 exports.getUser = [user.validateData, user.getUser];
+
 exports.createUser = [user.validateData, user.createUser];
+
+
 exports.updateUser = [user.validateData, user.updateUser];
 exports.login = [user.validateData, user.login];
 exports.createDependence = [

@@ -1,4 +1,6 @@
 const userController = require("../controllers/firebase");
+const queries =  require("../tools/queries")
+const graphUD =   require("../tools/grahpql");
 
 async function validateData(req, res, next) {
   req.objects = {};
@@ -39,7 +41,16 @@ async function getUser(req, res) {
 }
 
 async function createUser(req, res) {
-  console.log(req.objects);
+  let user = req.objects.user
+  let query = queries.createUserMutation(user.identificacion,user.nombres,user.apellidos,user.correo,"04/08/2020",2,2);
+  let result = await graphUD.executeQuery(query);
+  console.log(result.data);
+  if(result.data.errors){
+    res.status(400).send('Something broke!');
+  }else{
+    res.json(result.data.data.insert_usuario.returning);
+  }
+
   // try {
   //   let userResult = await userController.createUser(req.objects.user);
   //   if (userResult.data === undefined) {

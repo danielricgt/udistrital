@@ -47,20 +47,15 @@ async function createUser(user) {
   let data = {};
   try {
     let result = await admin.auth().createUser({
-      email: user.email,
+      email: user.correo,
       emailVerified: false,
-      phoneNumber: user.phoneNumber,
+      phoneNumber: user.telefono,
       password: user.password,
-      displayName: `${user.name} ${user.lastname}`,
+      displayName: `${user.nombres} ${user.apellidos}`,
       photoURL: user.photoURL,
       disabled: false,
     });
-    result.fk_dependence = user.fk_dependence;
-    result.id = user.id;
-
-    await createUserDatabase(result);
-    data.data = result;
-    return data;
+    return result;
   } catch (error) {
     data.error = error;
     return data;

@@ -41,26 +41,26 @@ async function getUser(req, res) {
 }
 
 async function createUser(req, res) {
+  let error = {};
+  let data = {};
   let user = req.objects.user
   let query = queries.createUserMutation(user.identificacion,user.nombres,user.apellidos,user.correo,"04/08/2020",2,2);
-  let result = await graphUD.executeQuery(query);
-  console.log(result.data);
-  if(result.data.errors){
-    res.status(400).send('Something broke!');
-  }else{
-    res.json(result.data.data.insert_usuario.returning);
+  let resultDB = await graphUD.executeQuery(query);
+  let userResultFirebase = await userController.createUser(req.objects.user);
+  if(resultDB.data.errors ||userResultFirebase.error ){
+    if (resultDB.data.errors) {
+      error.graphQl =  resultDB.data.errors[0].message;
+    }
+    if(userResultFirebase.error){
+      error.firebase = userResultFirebase.error.message; 
+    }
+    res.status(400).json({error});
   }
-
-  // try {
-  //   let userResult = await userController.createUser(req.objects.user);
-  //   if (userResult.data === undefined) {
-  //     res.status(201).json({ error: userResult.error });
-  //   } else {
-  //     res.json({ message: userResult });
-  //   }
-  // } catch (error) {
-  //   res.status(400).json({ message: "Error cretate User" });
-  // }
+  else {
+    data.firebase = userResultFirebase;
+    data.graphQl= resultDB.data.data.insert_usuario.returning[0];
+    res.json({ data })
+  }
 }
 
 async function updateUser(req, res) {
